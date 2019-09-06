@@ -120,6 +120,10 @@
     color: #333; !important;
 }
 
+.m-teal {
+    color: #00B5AD; !important;
+}
+
 /*----------position-----------*/
 .m-fixed {
     position: fixed; !important;
