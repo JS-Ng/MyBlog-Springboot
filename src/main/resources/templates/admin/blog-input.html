@@ -3,22 +3,22 @@
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博客发布</title>
+    <title>Launch Blog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
     <link rel="stylesheet" href="../../static/css/me.css">
 </head>
 <body>
 
-    <!--导航-->
+    <!--navigation-->
     <!--attached保证segment没有圆角-->
     <nav class="ui inverted attached segment m-padded-tb-mini">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
-                <h2 class="ui teal header item">管理后台</h2>
-                <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i></i>博客</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <h2 class="ui teal header item">Backstage Management</h2>
+                <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i></i>Blog</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Type</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tag</a>
                 <div class="right menu">
                     <div class="ui dropdown item">
                         <div class="text">
@@ -27,7 +27,7 @@
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a href="#" class="item">注销</a>
+                            <a href="#" class="item">logout</a>
                         </div>
                     </div>
                 </div>
@@ -42,8 +42,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="ui right menu">
-                <a href="#" th:href="@{/admin/blogs/input}" class="active teal item">发布</a>
-                <a href="#" th:href="@{/admin/blogs}" class="item">列表</a>
+                <a href="#" th:href="@{/admin/blogs/input}" class="active teal item">Launch</a>
+                <a href="#" th:href="@{/admin/blogs}" class="item">List</a>
             </div>
         </div>
 
@@ -60,21 +60,21 @@
                 <div class="required field">
                     <div class="ui left labeled input">
                         <div class="ui selection compact teal basic dropdown label">
-                            <input type="hidden" value="原创" name="flag" th:value="*{flag}">
+                            <input type="hidden" value="Original" name="flag" th:value="*{flag}">
                             <i class="dropdown icon"></i>
-                            <div class="text">原创</div>
+                            <div class="text">Original</div>
                             <div class="menu">
-                                <div class="item" data-value="原创">原创</div>
-                                <div class="item" data-value="转载">转载</div>
-                                <div class="item" data-value="翻译">翻译</div>
+                                <div class="item" data-value="Original">Original</div>
+                                <div class="item" data-value="Reprint">Reprint</div>
+                                <div class="item" data-value="Translation">Translation</div>
                             </div>
                         </div>
-                        <input type="text" name="title" placeholder="标题" th:value="*{title}">
+                        <input type="text" name="title" placeholder="title" th:value="*{title}">
                     </div>
                 </div>
                 <div class="required field">
                     <div id="md-content" style="z-index: 1 !important;">
-                        <textarea name="content" placeholder="博客内容" style="display: none" th:text="*{content}"></textarea>
+                        <textarea name="content" placeholder="Blog content" style="display: none" th:text="*{content}"></textarea>
                     </div>
 
                 </div>
@@ -82,25 +82,25 @@
                 <div class="two fields">
                     <div class="required field">
                         <div class="ui left labeled action input">
-                            <label class="ui compact teal basic label">分类</label>
+                            <label class="ui compact teal basic label">Type</label>
                             <div class="ui fluid selection dropdown">
                                 <input type="hidden" name="type.id"  th:value="*{type} != null ? *{type.id}">
                                 <input type="hidden" name="type.id"  th:value="*{type} != null ? *{type.id}">
                                 <i class="dropdown icon"></i>
-                                <div class="default text">分类</div>
+                                <div class="default text">Type</div>
                                 <div class="menu">
-                                    <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">错误日志</div>
+                                    <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">Log</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui left labeled action input">
-                            <label class="ui compact teal basic label">标签</label>
+                            <label class="ui compact teal basic label">Tag</label>
                             <div class="ui fluid selection multiple search dropdown">
                                 <input type="hidden" name="tagIds" th:value="*{tagIds}">
                                 <i class="dropdown icon"></i>
-                                <div class="default text">标签</div>
+                                <div class="default text">Tag</div>
                                 <div class="menu">
                                     <div class="item" th:each="tag : ${tags}" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">java</div>
                                 </div>
@@ -111,8 +111,8 @@
 
                 <div class="required field">
                     <div class="ui left labeled input">
-                        <label class="ui teal basic label">封面图片</label>
-                        <input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="封面图片引用地址">
+                        <label class="ui teal basic label">Cover Picture</label>
+                        <input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="The reference of cover picture">
                     </div>
                 </div>
 
@@ -124,25 +124,25 @@
                     <div class="field">
                         <div class="ui checkbox">
                             <input type="checkbox" id="recommend" name="recommend" th:checked="*{recommend}" class="hidden">
-                            <label for="recommend">推荐</label>
+                            <label for="recommend">recommendation</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
                             <input type="checkbox" id="shareStatement" name="shareStatement" th:checked="*{shareStatement}" class="hidden">
-                            <label for="shareStatement">转载声明</label>
+                            <label for="shareStatement">Reprint statement</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
                             <input type="checkbox" id="appreciation" name="appreciation" th:checked="*{appreciation}" class="hidden">
-                            <label for="appreciation">赞赏</label>
+                            <label for="appreciation">appreciation</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
                             <input type="checkbox" id="commentable" name="commentable" class="hidden" th:checked="*{commentable}">
-                            <label for="commentable">评论</label>
+                            <label for="commentable">comment</label>
                         </div>
                     </div>
                 </div>
@@ -151,9 +151,9 @@
                 <div class="ui error message"></div>
 
                 <div class="ui right aligned container">
-                    <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
-                    <button type="button" id="save-btn" class="ui secondary button">保存</button>
-                    <button type="button" id="publish-btn" class="ui teal button">发布</button>
+                    <button type="button" class="ui button" onclick="window.history.go(-1)">Back</button>
+                    <button type="button" id="save-btn" class="ui secondary button">Save</button>
+                    <button type="button" id="publish-btn" class="ui teal button">Launch</button>
                 </div>
             </form>
 
@@ -162,40 +162,32 @@
 
     </div>
 
-    <!--底部-->
+    <!--bottom-->
     <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
         <div class="ui center aligned container">
-            <!--分成16份-->
+            <!--divide 16 col-->
             <div class="ui inverted divided stackable grid">
-                <div class="three wide column">
+                <div class="four wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <img src="../../static/images/show.jpg" class="ui rounded image" alt="" style="width: 110px">
+                            <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" class="ui rounded image" alt="" style="width: 110px">
                         </div>
                     </div>
                 </div>
-                <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">最新博客</h4>
-                    <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
-                        <a href="#" class="item">用户故事</a>
-                        <a href="#" class="item">大城小事</a>
-                        <a href="#" class="item">东民西摇</a>
-                        <a href="#" class="item">可乐兑白开</a>
+                <div class="eight wide column">
+                    <h4 class="ui inverted header m-text-spaced">about me</h4>
+                    <div class="ui inverted link list">
+                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >This is my personal blog, I will share my favorite articles, music, films, technological blog ...</p>
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">联系方式</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">Contact Me</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">QQ：648398197</a>
                         <a href="#" class="item">Email：648398197@qq.com</a>
                     </div>
                 </div>
-                <div class="five wide column">
-                    <h4 class="ui inverted header m-text-spaced">关于我</h4>
-                    <div class="ui inverted link list">
-                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >这是我的个人博客，会分享关于编程，音乐，喜爱的文章......</p>
-                    </div>
-                </div>
+
             </div>
             <div class="ui inverted section divider"></div>
             <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined">Copyright © 2019 Designed by zhd</p>
@@ -223,7 +215,7 @@
                     identifier: 'title',
                     rules: [{
                         type: 'empty',
-                        prompt: '标题：请输入博客标题'
+                        prompt: 'Attention：Please input title!'
                     }]
                 },
 
@@ -231,7 +223,7 @@
                     identifier: 'content',
                         rules: [{
                         type: 'empty',
-                        prompt: '标题：请输入博客内容'
+                        prompt: 'Attention：Please input content!'
                     }]
                 },
 
@@ -239,7 +231,7 @@
                     identifier: 'typeId',
                     rules: [{
                         type: 'empty',
-                        prompt: '标题：请输入博客分类'
+                        prompt: 'Attention：Please input type!'
                     }]
                 },
 
@@ -247,7 +239,7 @@
                     identifier: 'firstPicture',
                     rules: [{
                         type: 'empty',
-                        prompt: '标题：请输入博客封面'
+                        prompt: 'Attention：Please input reference of conver picture!'
                     }]
                 },
 
@@ -255,7 +247,7 @@
                     identifier: 'description',
                     rules: [{
                         type : 'empty',
-                        prompt: '标题：请输入博客描述'
+                        prompt: 'Attention：Please input description!'
                     }]
                 }
             }
@@ -272,12 +264,12 @@
         });
 
         $('#save-btn').click(function () {
-            $('[name="published"]').val(true);
+            $('[name="published"]').val(false);
             $('#blog-form').submit();
         });
 
         $('#publish-btn').click(function () {
-            $('[name="published"]').val(false);
+            $('[name="published"]').val(true);
             $('#blog-form').submit();
         });
 

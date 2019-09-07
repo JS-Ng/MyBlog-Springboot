@@ -48,7 +48,7 @@ public class TagController {
     public String postTag(@Valid Tag tag, BindingResult result, RedirectAttributes attributes){
         Tag tag1 = tagService.getTagByName(tag.getName());
         if(tag1 != null){
-            result.rejectValue("name", "nameError", "不能添加重复的标签");
+        result.rejectValue("name", "nameError", "the tag you add exists!");
         }
 
         if(result.hasErrors()){
@@ -57,9 +57,9 @@ public class TagController {
 
         Tag t = tagService.saveTag(tag);
         if(t == null){
-            attributes.addFlashAttribute("message","新增失败");
+            attributes.addFlashAttribute("message","add failed!");
         }else{
-            attributes.addFlashAttribute("message", "新增成功");
+            attributes.addFlashAttribute("message", "add successful!");
         }
         return "redirect:/admin/tags";
     }
@@ -69,7 +69,7 @@ public class TagController {
                           @PathVariable Long id, RedirectAttributes attributes){
         Tag tag2 = tagService.getTagByName(tag.getName());
         if(tag2 != null){
-            result.rejectValue("name", "nameError", "不能添加重复的标签");
+            result.rejectValue("name", "nameError", "The tag you add exists!");
         }
 
         if(result.hasErrors()){
@@ -79,16 +79,16 @@ public class TagController {
         Tag t = tagService.updateTag(id, tag);
 
         if(t == null){
-            attributes.addFlashAttribute("message", "更新失败");
+            attributes.addFlashAttribute("message", "update failed!");
         }else {
-            attributes.addFlashAttribute("message", "更新成功");
+            attributes.addFlashAttribute("message", "update successful!");
         }
         return "redirect:/admin/tags";
     }
 
     @GetMapping("/tags/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
-        attributes.addFlashAttribute("message","删除成功");
+        attributes.addFlashAttribute("message","delete successful!");
         tagService.deleteTag(id);
         return "redirect:/admin/tags";
     }

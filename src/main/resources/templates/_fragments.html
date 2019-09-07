@@ -3,7 +3,7 @@
 <head th:fragment="head(title)">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title th:replace="${title}">博客详情</title>
+    <title th:replace="${title}">Blog Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
     <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
@@ -18,11 +18,11 @@
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">Blog</h2>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n == 1} ? 'active'"><i class="home icon"></i></i>首页</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n == 2} ? 'active'"><i class="idea icon"></i>分类</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n == 3} ? 'active'"><i class="tags icon"></i>标签</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n == 4} ? 'active'"><i class="clone icon"></i>归档</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n == 5} ? 'active'"><i class="info icon"></i>关于我</a>
+            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n == 1} ? 'active'"><i class="home icon"></i></i>Index</a>
+            <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n == 2} ? 'active'"><i class="idea icon"></i>Type</a>
+            <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n == 3} ? 'active'"><i class="tags icon"></i>Tag</a>
+            <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n == 4} ? 'active'"><i class="clone icon"></i>Archive</a>
+            <a href="#" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n == 5} ? 'active'"><i class="info icon"></i>About me</a>
             <div class="m-item right item">
                 <form name="search" action="#" method="post" th:action="@{/search}" target="_blank">
                     <div class="ui icon inverted transparent input">
@@ -36,10 +36,10 @@
     </div>
 </nav>
 
-<!--底部-->
+<!--bottom-->
 <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
     <div class="ui center aligned container">
-        <!--分成16份-->
+        <!--divide 16 col-->
         <div class="ui inverted divided stackable grid">
             <div class="three wide column">
                 <div class="ui inverted link list">
@@ -49,25 +49,25 @@
                 </div>
             </div>
             <div class="four wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">最新博客</h4>
-                <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
-                    <a href="#" class="item">用户故事</a>
-                    <a href="#" class="item">大城小事</a>
-                    <a href="#" class="item">东民西摇</a>
-                    <a href="#" class="item">可乐兑白开</a>
+                <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">New Recommendation</h4>
+                <div id="newblog-container">
+                    <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined" th:fragment="newBlogList">
+                        <a href="#" class="item" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}" th:each="blog : ${newblogs}" th:text="${blog.title}">用户故事</a>
+                    </div>
                 </div>
+
             </div>
             <div class="four wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">联系方式</h4>
+                <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">Contact me</h4>
                 <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                     <a href="#" class="item">QQ：648398197</a>
-                    <a href="#" class="item">Email：648398197@qq.com</a>
+                    <a href="#" class="item" th:text="#{index.email}">Email：648398197@qq.com</a>
                 </div>
             </div>
             <div class="five wide column">
-                <h4 class="ui inverted header m-text-spaced">关于我</h4>
+                <h4 class="ui inverted header m-text-spaced">About me</h4>
                 <div class="ui inverted link list">
-                    <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >这是我的个人博客，会分享关于编程，音乐，喜爱的文章......</p>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >This is my personal blog, I will share my favorite articles, music, films, technological blog ...</p>
                 </div>
             </div>
         </div>
@@ -80,10 +80,15 @@
 
 <th:block th:fragment="script">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-    <script src="../static/lib/prism/prism.js" th:src="/lib/prism/prism.js"></script>
-    <script src="../static/lib/tocbot/tocbot.min.js" th:src="/lib/tocbot/tocbot.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <script>
+        $('#newblog-container').load("[[@{/footer/newblog}]]");
+    </script>
 </th:block>
 
 

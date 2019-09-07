@@ -51,16 +51,16 @@ public class TypeController {
     public String post(@Valid Type type, BindingResult result, RedirectAttributes attributes){
         Type type1 = typeService.getTypeByName(type.getName());
         if(type1 != null){
-            result.rejectValue("name", "nameError", "不能添加重复的分类");
+            result.rejectValue("name", "nameError", "The type you add exist!");
         }
         if(result.hasErrors()){
             return "admin/type-input";
         }
         Type t = typeService.saveType(type);
         if(t == null){
-            attributes.addFlashAttribute("message", "新增失败");
+            attributes.addFlashAttribute("message", "add failed!");
         }else{
-            attributes.addFlashAttribute("message", "新增成功");
+            attributes.addFlashAttribute("message", "add successful!");
         }
         return "redirect:/admin/types";
     }
@@ -71,23 +71,23 @@ public class TypeController {
                            @PathVariable Long id, RedirectAttributes attributes){
         Type type2 = typeService.getTypeByName(type.getName());
         if(type2 != null){
-            result.rejectValue("name", "nameError", "不能添加重复的分类");
+            result.rejectValue("name", "nameError", "The type you add exist!");
         }
         if(result.hasErrors()){
             return "admin/type-input";
         }
         Type t = typeService.updateType(id, type);
         if(t == null){
-            attributes.addFlashAttribute("message", "更新失败");
+            attributes.addFlashAttribute("message", "update failed!");
         }else{
-            attributes.addFlashAttribute("message", "更新成功");
+            attributes.addFlashAttribute("message", "update successful!");
         }
         return "redirect:/admin/types";
     }
 
     @GetMapping("types/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
-        attributes.addFlashAttribute("message", "删除成功");
+        attributes.addFlashAttribute("message", "delete successful!");
         typeService.deleteType(id);
         return "redirect:/admin/types";
     }

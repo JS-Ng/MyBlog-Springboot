@@ -3,23 +3,23 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>首页</title>
+    <title>Index</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
 <body>
 
-    <!--导航-->
+    <!--navigation-->
     <!--attached保证segment没有圆角-->
     <nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>首页</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>Index</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Type</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tag</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>Archive</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>About me</a>
                 <div class="m-item right item">
                     <div class="ui icon inverted transparent input">
                         <input type="text" placeholder="Search....">
@@ -33,7 +33,7 @@
         <!--</a>-->
     </nav>
 
-    <!--中间内容-->
+    <!--content-->
     <div class="m-padded-tb-large m-container">
         <div class="ui container">
             <div class="ui stackable grid">
@@ -42,10 +42,10 @@
                     <div class="ui top attached segment">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <h3 class="ui teal header">博客</h3>
+                                <h3 class="ui teal header">Blog</h3>
                             </div>
                             <div class="right aligned column">
-                                共 <h3 class="ui orange header m-inline-block" th:text="${page.totalElements}">14</h3> 篇
+                                <h3 class="ui orange header m-inline-block" th:text="${page.totalElements}">14</h3> Blog
                             </div>
                         </div>
                     </div>
@@ -253,26 +253,26 @@
                     <div class="ui bottom attached segment" th:if="${page.totalPages} > 1">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui teal basic mini button">上一页</a>
+                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui teal basic mini button">Prev</a>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui teal basic mini button">下一页</a>
+                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui teal basic mini button">Next</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="five wide column">
-                    <!--分类-->
+                    <!--Type-->
                     <div class="ui segments">
-                        <!--secondary 有灰色效果-->
+                        <!--secondary grey-->
                         <div class="ui secondary segment">
                             <div class="ui two column grid">
                                 <div class="column">
-                                    <i class="idea icon"></i> 分类
+                                    <i class="idea icon"></i> Type
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="#" target="_blank">more <i class="angle double right icon"></i></a>
+                                    <a href="#" th:href="@{/types/-1}" target="_blank">more <i class="angle double right icon"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -280,8 +280,8 @@
                             <!--fluid表示填充-->
                             <div class="ui fluid vertical menu">
 
-                                <a href="#" class="item" th:each="type : ${types}">
-                                    <span th:text="${type.name}">杂七杂八</span>
+                                <a href="#" th:href="@{/types/{id}(id=${type.id})}" target="_blank" class="item" th:each="type : ${types}">
+                                    <span th:text="${type.name}">Type</span>
                                     <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
                                 </a>
                                 <!--/*-->
@@ -310,21 +310,21 @@
                         </div>
                     </div>
 
-                    <!--标签-->
+                    <!--Tag-->
                     <div class="ui segments">
                         <div class="ui secondary segment">
                             <div class="ui two column grid">
                                 <div class="column">
-                                    <i class="tags icon"></i> 标签
+                                    <i class="tags icon"></i> Tag
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="#">more <i class="angle double right icon"></i></a>
+                                    <a href="#" th:href="@{/tags/-1}" target="_blank">more <i class="angle double right icon"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="ui segment">
-                            <a href="#" target="_blank" class="ui teal basic left pointing label" style="margin-bottom: 0.3em; margin-top: 0.3em" th:each="tag : ${tags}">
-                                <span th:text="${tag.name}">读书</span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">15</div>
+                            <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank" class="ui teal basic left pointing label" style="margin-bottom: 0.3em; margin-top: 0.3em" th:each="tag : ${tags}">
+                                <span th:text="${tag.name}">Tag</span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">15</div>
                             </a>
 
                             <!--/*-->
@@ -348,13 +348,13 @@
 
                     </div>
 
-                    <!--最新推荐-->
+                    <!--New Recommendation-->
                     <div class="ui segments" style="margin-top: 2em">
                         <div class="ui secondary segment">
-                            <i class="bookmark icon"></i> 最新推荐
+                            <i class="bookmark icon"></i> New Recommendation
                         </div>
                         <div class="ui segment" th:each="blog : ${recommendBlogs}">
-                            <a href="#" class="m-black" th:text="${blog.title}" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">隔壁的故事</a>
+                            <a href="#" class="m-black" th:text="${blog.title}" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">story</a>
                         </div>
                         <!--/*-->
                         <div class="ui segment">
@@ -374,20 +374,20 @@
 
     </div>
 
-    <!--底部-->
+    <!--bottom-->
     <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
         <div class="ui center aligned container">
-            <!--分成16份-->
+            <!--divide 16 col-->
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <img src="../../static/images/show.jpg" class="ui rounded image" alt="" style="width: 110px">
+                            <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" class="ui rounded image" alt="" style="width: 110px">
                         </div>
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">最新博客</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">New Recommendation</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">用户故事</a>
                         <a href="#" class="item">大城小事</a>
@@ -396,16 +396,16 @@
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">联系方式</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">Contact me</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">QQ：648398197</a>
                         <a href="#" class="item">Email：648398197@qq.com</a>
                     </div>
                 </div>
                 <div class="five wide column">
-                    <h4 class="ui inverted header m-text-spaced">关于我</h4>
+                    <h4 class="ui inverted header m-text-spaced">About me</h4>
                     <div class="ui inverted link list">
-                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >这是我的个人博客，会分享关于编程，音乐，喜爱的文章......</p>
+                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >This is my personal blog, I will share my favorite articles, music, films, technological blog ...</p>
                     </div>
                 </div>
             </div>
@@ -418,9 +418,10 @@
 
 
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
 
 
     <script>

@@ -15,9 +15,10 @@ public class Blog {
 
     private String title;
 
-    @Basic(fetch = FetchType.LAZY)
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private String content;
+
     private String firstPicture;
     private String flag;
     private Integer views;
@@ -242,6 +243,12 @@ public class Blog {
                 ", recommend=" + recommend +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", tags=" + tags +
+                ", tagIds='" + tagIds + '\'' +
+                ", user=" + user +
+                ", comments=" + comments +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>归档</title>
@@ -9,17 +9,17 @@
 </head>
 <body>
 
-    <!--导航-->
+    <!--navigation-->
     <!--attached保证segment没有圆角-->
-    <nav class="ui inverted attached segment m-padded-tb-mini">
+    <nav th:replace="_fragments :: menu(4)" class="ui inverted attached segment m-padded-tb-mini">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>首页</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-                <a href="#" class="active m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>Index</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Type</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tag</a>
+                <a href="#" class="active m-item item m-mobile-hide"><i class="clone icon"></i>Archive</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>About me</a>
                 <div class="m-item right item">
                     <div class="ui icon inverted transparent input">
                         <input type="text" placeholder="Search....">
@@ -33,154 +33,51 @@
         </a>
     </nav>
 
-    <!--中间内容-->
+    <!--Content-->
     <div class="m-padded-tb-large m-container-small">
         <div class="ui container">
             <!--header-->
             <div class="ui top attached segment">
                 <div class="ui middle aligned two column grid">
                     <div class="column">
-                        <h3 class="ui teal header">归档</h3>
+                        <h3 class="ui teal header">Archive</h3>
                     </div>
                     <div class="right aligned column">
-                        共 <h3 class="ui orange header m-inline-block">14</h3> 博客
+                        <h3 class="ui orange header m-inline-block" th:text="${blogCount}">14</h3> Blog
                     </div>
                 </div>
             </div>
 
-            <h2 class="ui center aligned header">2019</h2>
-            <div class="ui fluid vertical menu">
-                <a href="#" target="_blank" class="item">
+            <th:block th:each="item : ${archiveMap}">
+                <h2 class="ui center aligned header" th:text="${item.key}">2019</h2>
+                <div class="ui fluid vertical menu">
+                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${item.value}">
                     <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
+                        <i class="mini teal circle icon"></i><span th:text="${blog.title}">story</span>
+                        <div class="ui teal basic left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime, 'MMM dd')}">6 4</div>
                     </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-            </div>
+                        <div class="ui orange basic left pointing label m-padded-tb-mini" th:text="${blog.flag}">Original</div>
+                    </a>
+                </div>
+            </th:block>
 
-            <h2 class="ui center aligned header">2018</h2>
-            <div class="ui fluid vertical menu">
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-            </div>
-
-            <h2 class="ui center aligned header">2017</h2>
-            <div class="ui fluid vertical menu">
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>偏僻的故事
-                        <div class="ui teal basic left pointing label m-padded-tb-mini">6月4日</div>
-                    </span>
-                    <div class="ui orange basic left pointing label m-padded-tb-mini">原创</div>
-                </a>
-            </div>
         </div>
     </div>
 
-    <!--底部-->
-    <footer class="ui inverted vertical segment m-padded-tb-massive">
+    <!--bottom-->
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
         <div class="ui center aligned container">
-            <!--分成16份-->
+            <!--divide 16 col-->
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <img src="../static/images/show.jpg" class="ui rounded image" alt="" style="width: 110px">
+                            <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" class="ui rounded image" alt="" style="width: 110px">
                         </div>
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">最新博客</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">New Recommendation</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">用户故事</a>
                         <a href="#" class="item">大城小事</a>
@@ -189,16 +86,16 @@
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">联系方式</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">Contact me</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">QQ：648398197</a>
                         <a href="#" class="item">Email：648398197@qq.com</a>
                     </div>
                 </div>
                 <div class="five wide column">
-                    <h4 class="ui inverted header m-text-spaced">关于我</h4>
+                    <h4 class="ui inverted header m-text-spaced">About me</h4>
                     <div class="ui inverted link list">
-                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >这是我的个人博客，会分享关于编程，音乐，喜爱的文章......</p>
+                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >This is my personal blog, I will share my favorite articles, music, films, technological blog ...</p>
                     </div>
                 </div>
             </div>
@@ -209,9 +106,10 @@
 
     </footer>
 
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
 
     <script>
         $('.menu.toggle').click(function () {

@@ -3,7 +3,7 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>首页</title>
+    <title>Index</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
@@ -15,11 +15,11 @@
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>首页</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>Blog</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Type</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tag</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>Archive</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>About me</a>
                 <div class="m-item right item">
                     <div class="ui icon inverted transparent input">
                         <input type="text" placeholder="Search....">
@@ -58,10 +58,10 @@
     <br>
 
 
-    <!--底部-->
+    <!--bottom-->
     <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
         <div class="ui center aligned container">
-            <!--分成16份-->
+            <!--divide 16 col-->
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
                     <div class="ui inverted link list">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">最新博客</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">New Recommendation</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">用户故事</a>
                         <a href="#" class="item">大城小事</a>
@@ -80,16 +80,16 @@
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">联系方式</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">Contact me</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">QQ：648398197</a>
                         <a href="#" class="item">Email：648398197@qq.com</a>
                     </div>
                 </div>
                 <div class="five wide column">
-                    <h4 class="ui inverted header m-text-spaced">关于我</h4>
+                    <h4 class="ui inverted header m-text-spaced">About me</h4>
                     <div class="ui inverted link list">
-                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >这是我的个人博客，会分享关于编程，音乐，喜爱的文章......</p>
+                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >This is my personal blog, I will share my favorite articles, music, films, technological blog ...</p>
                     </div>
                 </div>
             </div>

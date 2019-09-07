@@ -3,22 +3,22 @@
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>标签新增</title>
+    <title>New Tag Add</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
     <link rel="stylesheet" href="../../static/css/me.css">
 </head>
 <body>
 
-    <!--导航-->
+    <!--navigation-->
     <!--attached保证segment没有圆角-->
     <nav th:replace="admin/_fragments :: menu(3)" class="ui inverted attached segment m-padded-tb-mini">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
-                <h2 class="ui teal header item">管理后台</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <h2 class="ui teal header item">Backstage Management</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>Blog</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Type</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tag</a>
                 <div class="right menu">
                     <div class="ui dropdown item">
                         <div class="text">
@@ -27,7 +27,7 @@
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a href="#" class="item">注销</a>
+                            <a href="#" class="item">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -42,22 +42,22 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="ui right menu">
-                <a href="#" th:href="@{/admin/tags/input}" class="active teal item">新增</a>
-                <a href="#" th:href="@{/admin/tags}" class="item">列表</a>
+                <a href="#" th:href="@{/admin/tags/input}" class="active teal item">New</a>
+                <a href="#" th:href="@{/admin/tags}" class="item">List</a>
             </div>
         </div>
 
     </div>
 
-    <!--中间内容-->
+    <!--Content-->
     <div class="m-padded-tb-large m-container-small">
         <div class="ui container">
             <form action="#" method="post" th:object="${tag}" th:action="*{id} == null ? @{/admin/tags} : @{/admin/tags/{id}(id=*{id})}" class="ui form">
                 <input type="hidden" name="id" th:value="*{id}">
                 <div class="required field">
                     <div class="ui left labeled input">
-                        <label class="ui teal basic label">名称</label>
-                        <input type="text" name="name" placeholder="标签名称" th:value="*{name}">
+                        <label class="ui teal basic label">Name</label>
+                        <input type="text" name="name" placeholder="Tag Name" th:value="*{name}">
                     </div>
                 </div>
 
@@ -74,8 +74,8 @@
                 /*/-->
 
                 <div class="ui right aligned container">
-                    <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
-                    <button class="ui teal submit button">提交</button>
+                    <button type="button" class="ui button" onclick="window.history.go(-1)">Back</button>
+                    <button class="ui teal submit button">Submit</button>
                 </div>
             </form>
 
@@ -104,40 +104,32 @@
 
     </div>
 
-    <!--底部-->
+    <!--bottom-->
     <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
         <div class="ui center aligned container">
-            <!--分成16份-->
+            <!--divide 16 col-->
             <div class="ui inverted divided stackable grid">
-                <div class="three wide column">
+                <div class="four wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <img src="../../static/images/show.jpg" class="ui rounded image" alt="" style="width: 110px">
+                            <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" class="ui rounded image" alt="" style="width: 110px">
                         </div>
                     </div>
                 </div>
-                <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">最新博客</h4>
-                    <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
-                        <a href="#" class="item">用户故事</a>
-                        <a href="#" class="item">大城小事</a>
-                        <a href="#" class="item">东民西摇</a>
-                        <a href="#" class="item">可乐兑白开</a>
+                <div class="eight wide column">
+                    <h4 class="ui inverted header m-text-spaced">about me</h4>
+                    <div class="ui inverted link list">
+                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >This is my personal blog, I will share my favorite articles, music, films, technological blog ...</p>
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">联系方式</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">Contact Me</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">QQ：648398197</a>
                         <a href="#" class="item">Email：648398197@qq.com</a>
                     </div>
                 </div>
-                <div class="five wide column">
-                    <h4 class="ui inverted header m-text-spaced">关于我</h4>
-                    <div class="ui inverted link list">
-                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >这是我的个人博客，会分享关于编程，音乐，喜爱的文章......</p>
-                    </div>
-                </div>
+
             </div>
             <div class="ui inverted section divider"></div>
             <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined">Copyright © 2019 Designed by zhd</p>
@@ -165,7 +157,7 @@
                     identifier: 'name',
                     rules: [{
                         type: 'empty',
-                        prompt: '标题：请输入标签名称'
+                        prompt: 'Attention：Please input tag name!'
                     }]
                 }
             }

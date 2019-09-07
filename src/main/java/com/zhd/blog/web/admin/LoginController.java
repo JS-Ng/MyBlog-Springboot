@@ -31,14 +31,13 @@ public class LoginController {
                         @RequestParam String password,
                         HttpSession session,
                         RedirectAttributes attributes){
-        System.out.println("---------1------------");
         User user = userService.checkUsers(username, password);
         if(user != null){
             user.setPassword(null);
             session.setAttribute("user", user);
             return "admin/index";
         }else {
-            attributes.addFlashAttribute("message", "用户名和密码错误");
+            attributes.addFlashAttribute("message", "username or password was wrong!");
             return "redirect:/admin";
         }
     }

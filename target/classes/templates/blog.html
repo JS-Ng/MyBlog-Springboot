@@ -3,7 +3,7 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>博客详情</title>
+    <title>Blog Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/typo.css">
     <link rel="stylesheet" href="../static/css/animate.css">
@@ -13,17 +13,17 @@
 </head>
 <body>
 
-    <!--导航-->
+    <!--Navigation-->
     <!--attached保证segment没有圆角-->
     <nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>首页</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i></i>Index</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Type</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tag</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>Archive</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>About me</a>
                 <div class="m-item right item">
                     <div class="ui icon inverted transparent input">
                         <input type="text" placeholder="Search....">
@@ -37,14 +37,14 @@
         </a>
     </nav>
 
-    <!--中间内容-->
+    <!--Content-->
     <div id="waypoint" class="m-container-small m-padded-tb-big animated fadeIn">
         <div class="ui container">
             <div class="ui top attached segment">
                 <div class="ui horizontal link list">
                     <div class="item">
                         <img src="https://unsplash.it/100/100?image=1005" th:src="@{${blog.user.avatar}}"  alt="" class="ui avatar image">
-                        <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">李仁密</a></div>
+                        <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">zhd</a></div>
                     </div>
                     <div class="item">
                         <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2017-10-01</span>
@@ -54,17 +54,17 @@
                     </div>
                 </div>
             </div>
-            <!--图片区域-->
+            <!--Picture-->
             <div class="ui attached segment">
                 <img src="https://unsplash.it/800/450?image=1005" th:src="@{${blog.firstPicture}}" alt="" class="ui fluid rounded image">
             </div>
-            <!--内容-->
+            <!--Content-->
             <div class="ui  attached padded segment">
                 <div class="ui right aligned basic segment">
-                    <div class="ui orange basic label" th:text="${blog.flag}">原创</div>
+                    <div class="ui orange basic label" th:text="${blog.flag}">Original</div>
                 </div>
 
-                <h2 class="ui center aligned header" th:text="${blog.title}">关于刻意练习的清单</h2>
+                <h2 class="ui center aligned header" th:text="${blog.title}">blog title</h2>
                 <br>
                 <!--中间主要内容部分-->
                 <div id="content" class="typo  typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large" th:utext="${blog.content}">
@@ -435,20 +435,22 @@ h5,h6{font-size:1em;}
                     <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
                 </div>
 
-<!--                赞赏-->
-                <div class="ui center aligned container">
-                    <button id="payButton" class="ui orange circular basic button">赞赏</button>
-                </div>
-                <div class="ui payPict flowing popup transition hidden">
-                    <div class="ui orange basic label">
-                        <div class="ui images" style="font-size: inherit !important;">
-                            <div class="image">
-                                <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" alt="" class="ui rounded bordered image" style="width: 120px">
-                                <div align="center">wechat</div>
-                            </div>
-                            <div class="image">
-                                <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" alt="" class="ui rounded bordered image" style="width: 120px">
-                                <div align="center">paypal</div>
+                <!--赞赏-->
+                <div th:if="${blog.appreciation}">
+                    <div class="ui center aligned container">
+                        <button id="payButton" class="ui orange circular basic button">赞赏</button>
+                    </div>
+                    <div class="ui payPict flowing popup transition hidden">
+                        <div class="ui orange basic label">
+                            <div class="ui images" style="font-size: inherit !important;">
+                                <div class="image">
+                                    <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" alt="" class="ui rounded bordered image" style="width: 120px">
+                                    <div align="center">wechat</div>
+                                </div>
+                                <div class="image">
+                                    <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" alt="" class="ui rounded bordered image" style="width: 120px">
+                                    <div align="center">paypal</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -457,16 +459,16 @@ h5,h6{font-size:1em;}
 
             </div>
 
-            <!--博客信息-->
+            <!--blog info-->
             <div class="ui attached positive message">
                 <ui class="middle aligned list">
-                    <li>作者：<span th:text="${blog.user.nickname}"></span></li>
-                    <li>创作时间：<span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH-mm')}"><2019-6-4</span></li>
+                    <li>Author：<span th:text="${blog.user.nickname}"></span></li>
+                    <li>CrateTime：<span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH-mm')}"><2019-6-4</span></li>
                 </ui>
             </div>
 
-            <!--留言区域-->
-            <div class="ui bottom attached segment">
+            <!--Comment-->
+            <div class="ui bottom attached segment" th:if="${blog.commentable}">
 
                 <div id="comment-container" class="ui teal segment">
                     <div th:fragment="commentList">
@@ -479,12 +481,12 @@ h5,h6{font-size:1em;}
                                 <div class="content">
                                     <a class="author">
                                         <span th:text="${comment.nickname}">Matt</span>
-                                        <div class="ui mini basic teal left pointing label m-padded-mini" style="padding-top: 0.2em; padding-bottom: 0.2em" th:if="${comment.adminComment}">博主</div>
+                                        <div class="ui mini basic teal left pointing label m-padded-mini" style="padding-top: 0.2em; padding-bottom: 0.2em" th:if="${comment.adminComment}">Blogger</div>
                                     </a>
                                     <div class="metadata">
-                                        <span class="date" th:text="${#dates.format(comment.createTime, 'yyyy-MM-dd HH:mm')}">今天下午 5:42</span>
+                                        <span class="date" th:text="${#dates.format(comment.createTime, 'yyyy-MM-dd HH:mm')}">2019-09-01 5:42</span>
                                     </div>
-                                    <div class="text" th:text="${comment.content}">太赞了！ </div>
+                                    <div class="text" th:text="${comment.content}">Great !</div>
                                     <div class="actions">
                                         <a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${comment.id}, data-commentnickname=${comment.nickname}" onclick="reply(this)">Reply</a>
                                     </div>
@@ -497,13 +499,13 @@ h5,h6{font-size:1em;}
                                         <div class="content">
                                             <a class="author">
                                                 <span th:text="${reply.nickname}">Matt</span>
-                                                <div class="ui mini basic teal left pointing label m-padded-mini" style="padding-top: 0.2em; padding-bottom: 0.2em" th:if="${reply.adminComment}">博主</div>
+                                                <div class="ui mini basic teal left pointing label m-padded-mini" style="padding-top: 0.2em; padding-bottom: 0.2em" th:if="${reply.adminComment}">Blogger</div>
                                                 &nbsp;<span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal">@ Tom</span>
                                             </a>
                                             <div class="metadata">
-                                                <span class="date" th:text="${#dates.format(reply.createTime, 'yyyy-MM-dd HH:mm')}">今天下午 5:42</span>
+                                                <span class="date" th:text="${#dates.format(reply.createTime, 'yyyy-MM-dd HH:mm')}">2019-09-01 5:42</span>
                                             </div>
-                                            <div class="text" th:text="${reply.content}">太赞了！ </div>
+                                            <div class="text" th:text="${reply.content}">Great！ </div>
                                             <div class="actions">
                                                 <a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${reply.id}, data-commentnickname=${reply.nickname}" onclick="reply(this)">Reply</a>
                                             </div>
@@ -616,20 +618,20 @@ h5,h6{font-size:1em;}
 
 
 
-    <!--底部-->
+    <!--bottom-->
     <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
         <div class="ui center aligned container">
-            <!--分成16份-->
+            <!--divide 16 col-->
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <img src="../static/images/show.jpg" class="ui rounded image" alt="" style="width: 110px">
+                            <img src="../static/images/show.jpg" th:src="@{/images/show.jpg}" class="ui rounded image" alt="" style="width: 110px">
                         </div>
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">最新博客</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">New Recommendation</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">用户故事</a>
                         <a href="#" class="item">大城小事</a>
@@ -638,16 +640,16 @@ h5,h6{font-size:1em;}
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">联系方式</h4>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced m-text-lined">Contact me</h4>
                     <div class="ui inverted link list m-text-thin m-text-spaced m-text-lined">
                         <a href="#" class="item">QQ：648398197</a>
                         <a href="#" class="item">Email：648398197@qq.com</a>
                     </div>
                 </div>
                 <div class="five wide column">
-                    <h4 class="ui inverted header m-text-spaced">关于我</h4>
+                    <h4 class="ui inverted header m-text-spaced">About me</h4>
                     <div class="ui inverted link list">
-                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >这是我的个人博客，会分享关于编程，音乐，喜爱的文章......</p>
+                        <p class="m-text-thin m-text-spaced m-opacity-mini m-text-lined" >This is my personal blog, I will share my favorite articles, music, films, technological blog ...</p>
                     </div>
                 </div>
             </div>
@@ -658,11 +660,10 @@ h5,h6{font-size:1em;}
 
     </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-        <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
-        <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
-        <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
 
     <script>
         $('.menu.toggle').click(function () {
@@ -705,7 +706,7 @@ h5,h6{font-size:1em;}
                     identifier: 'content',
                     rules: [{
                         type: 'empty',
-                        prompt: '请输入评论内容'
+                        prompt: 'Please input your comment'
                     }]
                 },
 
@@ -730,10 +731,10 @@ h5,h6{font-size:1em;}
         $('#commentPost-btn').click(function () {
             var boo = $('.ui.form').form('validate form');
             if(boo){
-                console.log("校验成功");
+                console.log("check successful!");
                 postData();
             }else{
-                console.log("校验失败");
+                console.log("check failed!");
             }
         })
 
@@ -753,7 +754,7 @@ h5,h6{font-size:1em;}
         function clearContent() {
             $("[name='content']").val('');
             $("[name='parentComment.id']").val(-1);
-            $("[name='content']").attr("placeholder", "请输入评论信息...");
+            $("[name='content']").attr("placeholder", "Please input your comment...");
         }
 
         function reply(obj) {

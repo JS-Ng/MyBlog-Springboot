@@ -86,9 +86,9 @@ public class BlogController {
         }
 
         if(b == null){
-            attributes.addFlashAttribute("message", "新增失败");
+            attributes.addFlashAttribute("message", "add failed!");
         }else{
-            attributes.addFlashAttribute("message", "新增成功");
+            attributes.addFlashAttribute("message", "add successful!");
         }
         return REDIRCT_LIST;
     }
@@ -96,7 +96,7 @@ public class BlogController {
     @GetMapping("/blogs/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
         blogService.deleteBlog(id);
-        attributes.addFlashAttribute("message", "删除成功");
+        attributes.addFlashAttribute("message", "delete success!");
         return REDIRCT_LIST;
     }
 
