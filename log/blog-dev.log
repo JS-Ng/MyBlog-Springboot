@@ -2150,3 +2150,8 @@ Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Da
 2019-09-07 15:24:05.253  INFO 92454 --- [http-nio-8080-exec-9] com.zhd.blog.aspect.LogAspect            : request: {url='http://127.0.0.1:8080/footer/newblog', ip='127.0.0.1', classMethod='com.zhd.blog.web.IndexController.newBlogs', args=[{}]}
 2019-09-07 15:24:05.258  INFO 92454 --- [http-nio-8080-exec-9] com.zhd.blog.aspect.LogAspect            : ---------doAfter--------------
 2019-09-07 15:24:05.258  INFO 92454 --- [http-nio-8080-exec-9] com.zhd.blog.aspect.LogAspect            : Result : _fragments :: newBlogList
+2019-09-07 17:16:00.605  WARN 92454 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m37s190ms).
+2019-09-07 17:27:40.280  INFO 92454 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-07 17:27:40.283  INFO 92454 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-09-07 17:27:40.293  INFO 92454 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-09-07 17:27:40.307  INFO 92454 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
