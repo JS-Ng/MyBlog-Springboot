@@ -51,6 +51,6 @@ A personal blog base SpringBooot and semantic UI as java web developing practice
 
 
 ## Install
-  Download this project and modify application-dev.yml, where you should relpace your database username and password.
-  Blog front-end address: Http://localhost:8080
-  Blog backstage management address: Http://localhost:8080/admin
+  * Download this project and modify application-dev.yml, where you should relpace your database username and password.
+  * Blog front-end address: Http://localhost:8080
+  * Blog backstage management address: Http://localhost:8080/admin
